@@ -102,3 +102,80 @@
 // }
 
 /* Functions */
+
+// var getSum = function (num1: number, num2: number): number {
+// 	return num1 + num2;
+// }
+// var theSum1: number getSum(5,7);
+
+// document.write("5 + 2 = " + theSum1+"<br />");
+
+// var getDiff = function (num1: number, num2: number = 2, num3?: number): number {
+	
+// 	if(typeof num3 !== 'undefined') {
+// 		return num1 - num2 - num3;	
+// 	}
+// 	return num1 - num2;
+// }
+// document.write("5 - 2 = " + getDiff(5, 2) +"<br />");
+// document.write("5 - 2 - 3 = " + getDiff(5, 2, 3) +"<br />");
+
+// var sumAll = function (...nums: number[]):void {
+// 	var sum = nums.reduce((a,b) => a + b, 0);
+// 	document.write("sum :" + sum + "<br />");
+// }
+// sumAll(1,2,3,4,5);
+
+// var addOne = (x)=>x+1;
+// document.write("1 + 1 = " + addOne(1)+"<br./>");
+
+/* Class */
+
+class Animal {
+	public fevFood: string;
+	static numOfAnimals : number = 0;
+	constructor(private name: string, private owner: string){
+		Animal.numOfAnimals++;
+	}
+
+	ownerInfo(){
+		document.write(this.name + "is owned by " + this.owner +"<br />");
+	}
+
+	static howManyAnimals(): number{
+		return Animal.numOfAnimals;
+	}
+
+	private _weight: number;
+
+	get weight(weight: number){
+		return this._weight;
+	}
+
+	set weight(weight: number){
+		return this._weight = weight;
+	}
+
+}
+
+var spot = new Animal("spot", "Doug");
+
+spot.ownerInfo();
+spot.weight = 100;
+document.write("Spots weight is "+ spot.weight +"<br />");
+document.write("Number of Animals: "+ Animal.howManyAnimals() +"<br />");
+
+class Dog extends Animal {
+	
+	constructor(name: string, owner: string) {
+		super(name, owner);
+		Dog.numOfAnimals++;
+	}
+}
+
+
+var grover = new Dog("Grover", "Kimy");
+
+document.write("Number of Animals: "+ Animal.howManyAnimals() +"<br />");
+document.write("Is a dog an Animal: "+ (grover instanceof Animal) +"<br />");
+document.write("Does grover has a name: " + ('name' in grover) + "<br />");
