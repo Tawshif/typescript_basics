@@ -1,11 +1,6 @@
 /*
  * variables and how to define them and convert theme
  */
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-};
 // var myName: string = "anik";
 // var myAge: number = 30;
 // var canVote :boolean = true;
@@ -82,14 +77,14 @@ var __extends = (this && this.__extends) || function (d, b) {
 // }
 // var theSum1: number getSum(5,7);
 // document.write("5 + 2 = " + theSum1+"<br />");
-// var getDiff = function (num1: number, num2: number = 2, num3?: number): number {
+// var getDiff = function (num1: number, num2: number = 2, num3? : number): number {
 // 	if(typeof num3 !== 'undefined') {
 // 		return num1 - num2 - num3;	
 // 	}
 // 	return num1 - num2;
 // }
 // document.write("5 - 2 = " + getDiff(5, 2) +"<br />");
-// document.write("5 - 2 - 3 = " + getDiff(5, 2, 3) +"<br />");
+// document.write("5 - 6 - 3 = " + getDiff(5, 6, 3) +"<br />");
 // var sumAll = function (...nums: number[]):void {
 // 	var sum = nums.reduce((a,b) => a + b, 0);
 // 	document.write("sum :" + sum + "<br />");
@@ -97,46 +92,68 @@ var __extends = (this && this.__extends) || function (d, b) {
 // sumAll(1,2,3,4,5);
 // var addOne = (x)=>x+1;
 // document.write("1 + 1 = " + addOne(1)+"<br./>");
-/* Class */
-var Animal = (function () {
-    function Animal(name, owner) {
-        this.name = name;
-        this.owner = owner;
-        Animal.numOfAnimals++;
-    }
-    Animal.prototype.ownerInfo = function () {
-        document.write(this.name + "is owned by " + this.owner + "<br />");
-    };
-    Animal.howManyAnimals = function () {
-        return Animal.numOfAnimals;
-    };
-    Object.defineProperty(Animal.prototype, "weight", {
-        get: function (weight) {
-            return this._weight;
-        },
-        set: function (weight) {
-            return this._weight = weight;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Animal.numOfAnimals = 0;
-    return Animal;
-}());
-var spot = new Animal("spot", "Doug");
-spot.ownerInfo();
-spot.weight = 100;
-document.write("Spots weight is " + spot.weight + "<br />");
-document.write("Number of Animals: " + Animal.howManyAnimals() + "<br />");
-var Dog = (function (_super) {
-    __extends(Dog, _super);
-    function Dog(name, owner) {
-        _super.call(this, name, owner);
-        Dog.numOfAnimals++;
-    }
-    return Dog;
-}(Animal));
-var grover = new Dog("Grover", "Kimy");
-document.write("Number of Animals: " + Animal.howManyAnimals() + "<br />");
-document.write("Is a dog an Animal: " + (grover instanceof Animal) + "<br />");
-document.write("Does grover has a name: " + ('name' in grover) + "<br />");
+// /* Class */
+// class Animal {
+// 	public fevFood: string;
+// 	static numOfAnimals : number = 0;
+// 	constructor(private name: string, private owner: string){
+// 		Animal.numOfAnimals++;
+// 	}
+// 	ownerInfo(){
+// 		document.write(this.name + "is owned by " + this.owner +"<br />");
+// 	}
+// 	static howManyAnimals(): number{
+// 		return Animal.numOfAnimals;
+// 	}
+// 	private _weight: number;
+// 	get weight(weight: number){
+// 		return this._weight;
+// 	}
+// 	set weight(weight: number){
+// 		return this._weight = weight;
+// 	}
+// }
+// var spot = new Animal("spot", "Doug");
+// spot.ownerInfo();
+// spot.weight = 100;
+// document.write("Spots weight is "+ spot.weight +"<br />");
+// document.write("Number of Animals: "+ Animal.howManyAnimals() +"<br />");
+// class Dog extends Animal {
+// 	constructor(name: string, owner: string) {
+// 		super(name, owner);
+// 		Dog.numOfAnimals++;
+// 	}
+// }
+// var grover = new Dog("Grover", "Kimy");
+// document.write("Number of Animals: "+ Animal.howManyAnimals() +"<br />");
+// document.write("Is a dog an Animal: "+ (grover instanceof Animal) +"<br />");
+// document.write("Does grover has a name: " + ('name' in grover) + "<br />");
+/* Interfaces */
+// interface Vehicle{
+// 	drive():any;
+// }
+// class Car implements Vehicle {
+// 	constructor(private wheels: number) {}
+// 	drive():void{
+// 		document.write("The car drives with"+ this.wheels + "wheels <br />");
+// 	}
+// }
+// class Bicycle implements Vehicle {
+// 	constructor(private wheels: number) {}
+// 	drive():void{
+// 		document.write("The Bicycle drives with"+ this.wheels + "wheels <br />");
+// 	}
+// }
+// var car = new Car(4);
+// var bike = new Bicycle(2)
+// car.drive();
+// bike.drive();
+/* generic funtions */
+// for multiple data types same way
+function GetType(val) {
+    return typeof (val);
+}
+var aStr = "A string";
+var aNum = 20;
+document.write(GetType(aStr) + "<br/>");
+document.write(GetType(aNum) + "<br/>");
